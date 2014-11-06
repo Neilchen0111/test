@@ -41,6 +41,25 @@
   // Do any additional setup after loading the view, typically from a nib.
   [self configureView];
   NSLog(@"%@ viewDidLoad", NSStringFromClass([self class]));
+  
+//  UIView *addMoreView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 60)];
+//  addMoreView.backgroundColor = self.navigationController.navigationBar.backgroundColor;
+//  [self.view addSubview:addMoreView];
+//  
+//  UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
+//  bottomView.backgroundColor = [UIColor grayColor];
+//  [self.view addSubview:bottomView];
+//  UISegmentedControl *sg = [[UISegmentedControl alloc] initWithItems:@[@"one", @"two"]];
+//  sg.frame = CGRectMake(10, 10, 300, 40);
+//  [addMoreView addSubview:sg];
+//  
+//  for (UIView *view in self.navigationController.navigationBar.subviews) {
+//    for (UIView *subView in view.subviews) {
+//      [subView isKindOfClass:[UIImageView class]];
+////      subView.hidden = YES;
+//    }
+//  }
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,6 +91,12 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
   NSLog(@"%@ didReceiveMemoryWarning", NSStringFromClass([self class]));
+}
+
+#pragma mark - private
+
+- (void)scheduleNotification {
+  
 }
 
 @end

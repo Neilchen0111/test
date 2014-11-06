@@ -8,10 +8,13 @@
 
 #import "ACMasterViewController.h"
 #import "ACDetailViewController.h"
+#import "UINavigationBar+ACNavigationbar.h"
 
 @interface ACMasterViewController ()
 
-@property NSMutableArray *objects;
+@property (nonatomic, strong) NSMutableArray *objects;
+@property (nonatomic, strong) UIView *segmentView;
+
 @end
 
 @implementation ACMasterViewController
@@ -20,7 +23,6 @@
   [super awakeFromNib];
   NSLog(@"%@ awakeFromNib", NSStringFromClass([self class]));
   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-      self.clearsSelectionOnViewWillAppear = NO;
       self.preferredContentSize = CGSizeMake(320.0, 600.0);
   }
 }
@@ -38,6 +40,25 @@
   if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
   }
+  
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  navigationBar.userInteractionEnabled = YES;
+  _segmentView=[[UIView alloc] initWithFrame:CGRectMake(0, navigationBar.frame.size.height, navigationBar.frame.size.width, 50)];
+  _segmentView.userInteractionEnabled = YES;
+  self.segmentView.backgroundColor = [UIColor whiteColor];
+  self.segmentView.alpha = self.navigationController.view.alpha;
+  UISegmentedControl *tabSegmentedControl = [[UISegmentedControl alloc] init];
+  [tabSegmentedControl insertSegmentWithTitle:@"All" atIndex:0 animated:YES];
+  [tabSegmentedControl insertSegmentWithTitle:@"Each" atIndex:0 animated:YES];
+  tabSegmentedControl.frame = CGRectMake(20, 10, navigationBar.frame.size.width - 40, 30);
+  [tabSegmentedControl addTarget:self action:@selector(tabSegmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
+  tabSegmentedControl.userInteractionEnabled = YES;
+  [tabSegmentedControl setSelectedSegmentIndex:1];
+  
+  [self.segmentView addSubview:tabSegmentedControl];
+  [navigationBar addSubview:self.segmentView];
+  
+  self.tableView.contentInset = UIEdgeInsetsMake(self.segmentView.frame.size.height, 0,0,0);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,11 +69,29 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   NSLog(@"%@ viewDidAppear", NSStringFromClass([self class]));
+  
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  _segmentView.hidden = NO;
+  [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    _segmentView.frame = CGRectMake(0, navigationBar.frame.size.height, navigationBar.frame.size.width, 50);
+  } completion:^(BOOL finished) {
+    [navigationBar bringSubviewToFront:_segmentView];
+  }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  NSLog(@"%@ viewDidDisappear", NSStringFromClass([self class]));
+  
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   NSLog(@"%@ viewWillDisappear", NSStringFromClass([self class]));
+  
+  _segmentView.hidden = YES;
+  _segmentView.frame = CGRectZero;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -81,7 +120,10 @@
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   
-  [self schedulLocalNotification:now afterMintue:1 indexPath:indexPath];
+  if ([[UIApplication sharedApplication] scheduledLocalNotifications].count == 0) {
+    [self schedulLocalNotification:now afterMintue:1 indexPath:indexPath];
+  }
+
 }
 
 #pragma mark - Segues
@@ -122,7 +164,15 @@
   [[UIApplication sharedApplication] scheduleLocalNotification:remindUserFromNotify];
 }
 
+- (void)tabSegmentedControlChanged:(id)sender {
+  
+}
+
 #pragma mark - Table View
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
