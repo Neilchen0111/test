@@ -16,6 +16,7 @@
 		1CE9A95D1A092CB60036642F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE9A95B1A092CB60036642F /* LaunchScreen.xib */; };
 		1CE9A9691A092CB60036642F /* ACLifecycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE9A9681A092CB60036642F /* ACLifecycleTests.m */; };
 		1CE9A9761A0930030036642F /* ACLifecycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE9A9751A0930030036642F /* ACLifecycleCell.m */; };
+		1CE9A9791A0A94330036642F /* UINavigationBar+ACNavigationbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE9A9781A0A94330036642F /* UINavigationBar+ACNavigationbar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		1CE9A9681A092CB60036642F /* ACLifecycleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACLifecycleTests.m; sourceTree = "<group>"; };
 		1CE9A9741A0930030036642F /* ACLifecycleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACLifecycleCell.h; sourceTree = "<group>"; };
 		1CE9A9751A0930030036642F /* ACLifecycleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACLifecycleCell.m; sourceTree = "<group>"; };
+		1CE9A9771A0A94330036642F /* UINavigationBar+ACNavigationbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ACNavigationbar.h"; sourceTree = "<group>"; };
+		1CE9A9781A0A94330036642F /* UINavigationBar+ACNavigationbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ACNavigationbar.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 		1CE9A9481A092CB60036642F /* ACLifecycle */ = {
 			isa = PBXGroup;
 			children = (
+				1CE9A9771A0A94330036642F /* UINavigationBar+ACNavigationbar.h */,
+				1CE9A9781A0A94330036642F /* UINavigationBar+ACNavigationbar.m */,
 				1CE9A9731A092FE20036642F /* View */,
 				1CE9A9721A092CE50036642F /* View Controller */,
 				1CE9A94D1A092CB60036642F /* AppDelegate.h */,
@@ -249,6 +254,7 @@
 				1CE9A9761A0930030036642F /* ACLifecycleCell.m in Sources */,
 				1CE9A94F1A092CB60036642F /* AppDelegate.m in Sources */,
 				1CE9A9521A092CB60036642F /* ACMasterViewController.m in Sources */,
+				1CE9A9791A0A94330036642F /* UINavigationBar+ACNavigationbar.m in Sources */,
 				1CE9A94C1A092CB60036642F /* main.m in Sources */,
 				1CE9A9551A092CB60036642F /* ACDetailViewController.m in Sources */,
 			);
@@ -445,6 +451,7 @@
 				1CE9A96E1A092CB60036642F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1CE9A96F1A092CB60036642F /* Build configuration list for PBXNativeTarget "ACLifecycleTests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +460,7 @@
 				1CE9A9711A092CB60036642F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

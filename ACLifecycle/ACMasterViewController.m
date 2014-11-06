@@ -120,9 +120,9 @@
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   
-  if ([[UIApplication sharedApplication] scheduledLocalNotifications].count == 0) {
-    [self schedulLocalNotification:now afterMintue:1 indexPath:indexPath];
-  }
+//  if ([[UIApplication sharedApplication] scheduledLocalNotifications].count == 0) {
+//    [self schedulLocalNotification:now afterMintue:1 indexPath:indexPath];
+//  }
 
 }
 

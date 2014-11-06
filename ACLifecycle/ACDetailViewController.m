@@ -17,7 +17,7 @@
 #pragma mark - Managing the detail item
 
 - (void)awakeFromNib {
-  NSLog(@"%@ viewDidLoad", NSStringFromClass([self class]));
+  NSLog(@"%@ awakeFromNib", NSStringFromClass([self class]));
 }
 
 - (void)setDetailItem:(id)newDetailItem {
@@ -60,6 +60,11 @@
 //    }
 //  }
   
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  NSLog(@"%@ viewDidDisappear", NSStringFromClass([self class]));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
